@@ -5,9 +5,20 @@ from rest_framework import status
 from rest_framework import viewsets
 # from rest_framework.authentication import BaseAuthentication, SessionAuthentication, TokenAuthentication
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated, IsAuthenticatedOrReadOnly, DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
+
 # from .custompermissions import MyPermission
 # from .customauth import MyAuth
+
 from rest_framework_simplejwt.authentication import JWTAuthentication
+
+# from rest_framework.throttling import UserRateThrottle, AnonRateThrottle, ScopedRateThrottle
+# from .throttling import JackRateThrottle
+
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+
+from rest_framework.pagination import PageNumberPagination
+from .pegination import MyPageNumberPagination
 
 
 
@@ -15,8 +26,47 @@ class StudentModelViewset(viewsets.ModelViewSet):
     queryset = NewsetStudent.objects.all()
     serializer_class = NewsetStudentSerializer
 
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+
+
+    #               -------For JWT------
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
+
+#               ------For Throttling------
+    # authentication_classes = [SessionAuthentication]    
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+    # throttle_classes = [AnonRateThrottle, UserRateThrottle]
+    # throttle_classes = [JackRateThrottle, AnonRateThrottle]  # custome throttling
+
+#             -------Scoped Rate Throttling----->> used to throttle specific method for eg. list, retrieve, create, etc. You can add below code in each method inividually and throttle.
+    # throttle_classes = [ScopedRateThrottle]  
+    # throttle_scope = 'viewstu'    # "throttle_scope" can be different or same for each method.
+
+
+#               ------For Backend Filtering------
+
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['name','city']
+
+    # filterset_fields = {
+    #     'city': ["in", "exact"],
+    # } 
+
+
+#               ------For Search Filtering------
+
+    # filter_backends = [SearchFilter]    # '^' Starts-with search // # '=' Exact matches // #'$' Regex search
+    # search_fields  = ['name','city']    
+        
+
+#               ------For Backend Filtering------
+    # filter_backends = [OrderingFilter]
+    # ordering_fields   = ['name', 'roll']
+
+
+#               ------For Pagination------
+    # pagination_class = PageNumberPagination
+    pagination_class = MyPageNumberPagination   #(Custom Pagination)
 
 
 
