@@ -91,3 +91,11 @@ def student_create(requst):
 # https://simpleisbetterthancomplex.com/tutorial/2018/02/03/how-to-use-restful-apis-with-django.html
 # https://simpleisbetterthancomplex.com/series/beginners-guide/1.11/
 
+# Flask :
+# https://realpython.com/flask-blueprint/#:~:text=Each%20Flask%20Blueprint%20is%20an,before%20you%20can%20run%20it.
+# https://hackersandslackers.com/flask-application-factory/
+# https://www.digitalocean.com/community/tutorials/how-to-add-authentication-to-your-app-with-flask-login
+# https://www.geeksforgeeks.org/using-jwt-for-user-authentication-in-flask/#:~:text=To%20do%20that%2C%20change%20the,authentication%20with%20JWT%20in%20Flask.
+# https://flask-jwt-extended.readthedocs.io/en/stable/
+# https://flask-restful.readthedocs.io/en/latest/
+
